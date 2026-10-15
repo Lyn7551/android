@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Nextcloud - Android Client
+  ~
+  ~ SPDX-FileCopyrightText: 2026 Nextcloud GmbH and Nextcloud contributors
+  ~ SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+<!-- SSI Cloud branded overlay: overrides selected branding keys from main setup.xml -->
+<resources>
+    <!-- App name and other strings -->
+    <string name="app_name">SSI Cloud</string>
+    <string name="default_display_name_for_root_folder">SSI Cloud</string>
+    <string name="name_for_branded_user_agent">SSI Cloud</string>
+    <string name="nextcloud_user_agent">Mozilla/5.0 (Android) SSICloud-android/%1$s%2$s</string>
+
+    <!-- Branding flags -->
+    <bool name="is_branded_client">true</bool>
+    <bool name="show_whats_new">false</bool>
+
+    <!-- Colors -->
+    <color name="primary">#0F766E</color>
+    <color name="primary_dark">#0B5C56</color>
+    <color name="color_accent">#0F766E</color>
+    <color name="login_text_hint_color">#A9DBD5</color>
+
+    <!-- Help, privacy and recommend -->
+    <bool name="help_enabled">false</bool>
+    <bool name="privacy_enabled">false</bool>
+    <bool name="recommend_enabled">false</bool>
+</resources>
