@@ -16,6 +16,17 @@
     <!-- Branding flags -->
     <bool name="is_branded_client">true</bool>
     <bool name="show_whats_new">false</bool>
+    <bool name="show_provider_or_own_installation">false</bool>
+    <bool name="participate_enabled">false</bool>
+
+    <!-- Enforced server list: login shows a server spinner instead of the free-input URL field.
+         Replace the URL with the production domain once it is final. Double quotes must be
+         escaped, otherwise aapt strips them and the JSON becomes unparseable at runtime. -->
+    <string name="enforce_servers" translatable="false">[{\"name\":\"SSI Cloud\",\"url\":\"http://172.19.126.65:30000\"}]</string>
+
+    <!-- Splash screen brand subtitle, rendered as "SSI Cloud" -->
+    <string name="splashScreenBold">SSI</string>
+    <string name="splashScreenNormal">Cloud</string>
 
     <!-- Colors -->
     <color name="primary">#0F766E</color>

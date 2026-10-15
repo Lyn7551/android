@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Nextcloud - Android Client
+  ~
+  ~ SPDX-FileCopyrightText: 2026 Nextcloud GmbH and Nextcloud contributors
+  ~ SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+<!-- SSI Cloud branded overlay: only the keys overridden from main values-zh-rCN/strings.xml -->
+<resources>
+    <string name="compose_activity_label">SSI 助手</string>
+    <string name="prefs_show_ecosystem_apps_summary">导航栏中的 SSI Cloud 应用推荐</string>
+    <string name="file_migration_failed_dir_already_exists">SSI Cloud 目录已存在</string>
+    <string name="single_sign_on_request_token" formatted="true">是否允许%1$s访问您的 SSI Cloud 账号%2$s？</string>
+    <string name="auto_upload_battery_optimization_reason">SSI Cloud 的后台活动受到电池优化的限制。</string>
+</resources>

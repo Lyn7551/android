@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Nextcloud - Android Client
+  ~
+  ~ SPDX-FileCopyrightText: 2026 Nextcloud GmbH and Nextcloud contributors
+  ~ SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+<!-- SSI Cloud branded overlay: only the keys overridden from main values/strings.xml -->
+<resources>
+    <string name="compose_activity_label">SSI Assistant</string>
+    <string name="prefs_show_ecosystem_apps_summary">SSI Cloud app suggestions in navigation heading</string>
+    <string name="file_migration_failed_dir_already_exists">SSI Cloud folder already exists</string>
+    <string name="single_sign_on_request_token" formatted="true">Allow %1$s to access your SSI Cloud account %2$s?</string>
+    <string name="auto_upload_battery_optimization_reason">SSI Cloud\'s background activity is limited by battery optimization.</string>
+</resources>
