@@ -69,8 +69,8 @@ object BitmapUtils {
     private val usernamePalette: List<Color> by lazy {
         val red = Color(182, 70, 157)
         val yellow = Color(221, 203, 85)
-        val nextcloudBlue = Color(0, 130, 201)
-        mixPalette(red, yellow) + mixPalette(yellow, nextcloudBlue) + mixPalette(nextcloudBlue, red)
+        val brandTeal = Color(11, 92, 86)
+        mixPalette(red, yellow) + mixPalette(yellow, brandTeal) + mixPalette(brandTeal, red)
     }
 
     private val resources: Resources

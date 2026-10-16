@@ -38,4 +38,7 @@
     <bool name="help_enabled">false</bool>
     <bool name="privacy_enabled">false</bool>
     <bool name="recommend_enabled">false</bool>
+
+    <!-- Source code: point to the SSI fork (AGPL source offer) -->
+    <string name="sourcecode_url" translatable="false">https://github.com/Lyn7551/android</string>
 </resources>
