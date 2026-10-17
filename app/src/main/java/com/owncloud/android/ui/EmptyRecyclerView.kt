@@ -99,5 +99,8 @@ class EmptyRecyclerView @JvmOverloads constructor(context: Context, attrs: Attri
 
     fun setHasFooter(bool: Boolean) {
         hasFooter = bool
+        if (emptyView != null) {
+            configureEmptyView()
+        }
     }
 }

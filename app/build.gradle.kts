@@ -177,6 +177,12 @@ android {
                 versionCode = 1
                 versionName = "1"
             }
+
+            register("ssi") {
+                applicationId = "com.ssintnl.ssicloud"
+                versionNameSuffix = "-ssi"
+                dimension = "default"
+            }
         }
     }
 

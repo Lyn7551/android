@@ -183,7 +183,9 @@
                 style="@style/Nextcloud.Material.TextButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/show_all" />
+                android:text="@string/show_all"
+                android:visibility="gone"
+                tools:visibility="visible" />
 
             <View
                 android:id="@+id/divider2"
@@ -228,7 +230,9 @@
                 style="@style/Nextcloud.Material.TextButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/show_all" />
+                android:text="@string/show_all"
+                android:visibility="gone"
+                tools:visibility="visible" />
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

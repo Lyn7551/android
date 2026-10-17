@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Nextcloud - Android Client
+  ~
+  ~ SPDX-FileCopyrightText: 2026 Nextcloud GmbH and Nextcloud contributors
+  ~ SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+<!-- SSI Cloud branded overlay: only the keys overridden from main values-zh-rCN/strings.xml -->
+<resources>
+    <string name="compose_activity_label">SSI 助手</string>
+    <string name="prefs_show_ecosystem_apps_summary">导航栏中的 SSI Cloud 应用推荐</string>
+    <string name="file_migration_failed_dir_already_exists">SSI Cloud 目录已存在</string>
+    <string name="single_sign_on_request_token" formatted="true">是否允许%1$s访问您的 SSI Cloud 账号%2$s？</string>
+    <string name="auto_upload_battery_optimization_reason">SSI Cloud 的后台活动受到电池优化的限制。</string>
+
+    <!-- First-run onboarding pages (enterprise copy replaces consumer pages) -->
+    <string name="first_run_1_text">欢迎使用 SSI Cloud，您的企业云盘</string>
+    <string name="first_run_2_text">随时随地，在每台设备上访问您的文件</string>
+    <string name="first_run_3_text">通过团队文件夹与同事共享协作</string>
+    <string name="first_run_4_text">SSI 助手随时为您解答问题</string>
+
+    <!-- Recommended-files reason tags (server sends raw reason ids) -->
+    <string name="recommendation_reason_recently_edited">最近编辑</string>
+    <string name="recommendation_reason_recently_shared">最近分享</string>
+    <string name="recommendation_reason_recently_commented">最近评论</string>
+</resources>
