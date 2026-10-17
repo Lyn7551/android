@@ -12,4 +12,10 @@
     <string name="file_migration_failed_dir_already_exists">SSI Cloud 目录已存在</string>
     <string name="single_sign_on_request_token" formatted="true">是否允许%1$s访问您的 SSI Cloud 账号%2$s？</string>
     <string name="auto_upload_battery_optimization_reason">SSI Cloud 的后台活动受到电池优化的限制。</string>
+
+    <!-- First-run onboarding pages (enterprise copy replaces consumer pages) -->
+    <string name="first_run_1_text">欢迎使用 SSI Cloud，您的企业云盘</string>
+    <string name="first_run_2_text">随时随地，在每台设备上访问您的文件</string>
+    <string name="first_run_3_text">通过团队文件夹与同事共享协作</string>
+    <string name="first_run_4_text">SSI 助手随时为您解答问题</string>
 </resources>
