@@ -18,4 +18,9 @@
     <string name="first_run_2_text">随时随地，在每台设备上访问您的文件</string>
     <string name="first_run_3_text">通过团队文件夹与同事共享协作</string>
     <string name="first_run_4_text">SSI 助手随时为您解答问题</string>
+
+    <!-- Recommended-files reason tags (server sends raw reason ids) -->
+    <string name="recommendation_reason_recently_edited">最近编辑</string>
+    <string name="recommendation_reason_recently_shared">最近分享</string>
+    <string name="recommendation_reason_recently_commented">最近评论</string>
 </resources>

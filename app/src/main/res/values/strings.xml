@@ -1078,6 +1078,9 @@
     <string name="first_run_3_text">Easy-to-use webmail, calendar and contacts</string>
     <string name="first_run_4_text">Screensharing, online meetings and web conferences</string>
     <string name="restore_button_description">Restore deleted file</string>
+    <string name="recommendation_reason_recently_edited">Recently edited</string>
+    <string name="recommendation_reason_recently_shared">Recently shared</string>
+    <string name="recommendation_reason_recently_commented">Recently commented</string>
     <string name="restore">Restore file</string>
     <string name="restore_item">Restore</string>
     <string name="new_version_was_created">New version was created</string>
