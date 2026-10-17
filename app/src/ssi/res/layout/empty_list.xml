@@ -30,6 +30,16 @@
             android:contentDescription="@string/file_list_folder"
             android:src="@drawable/ic_list_empty_folder"
             android:visibility="gone"
+            app:tint="@color/primary"
+            tools:visibility="visible" />
+
+        <ProgressBar
+            android:id="@+id/empty_list_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:paddingBottom="@dimen/standard_half_padding"
+            android:visibility="gone"
             tools:visibility="visible" />
 
         <TextView

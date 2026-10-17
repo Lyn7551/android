@@ -113,6 +113,7 @@ open class ExtendedListFragment :
     private var mEmptyListMessage: TextView? = null
     private var mEmptyListHeadline: TextView? = null
     private var mEmptyListIcon: ImageView? = null
+    private var mEmptyListProgress: View? = null
 
     // Save the state of the scroll in browsing
     private var mIndexes = arrayListOf<Int?>()
@@ -405,6 +406,7 @@ open class ExtendedListFragment :
             mEmptyListMessage = emptyListViewText
             mEmptyListHeadline = emptyListViewHeadline
             mEmptyListIcon = emptyListIcon
+            mEmptyListProgress = emptyListProgress
         }
     }
 
@@ -578,13 +580,14 @@ open class ExtendedListFragment :
         @StringRes headline: Int,
         @StringRes message: Int,
         @DrawableRes icon: Int?,
-        tintIcon: Boolean = false
+        tintIcon: Boolean = false,
+        showProgress: Boolean = false
     ) {
         if (mEmptyListContainer == null || mEmptyListMessage == null) {
             return
         }
 
-        val newData = EmptyListData(headline, message, icon, tintIcon)
+        val newData = EmptyListData(headline, message, icon, tintIcon, showProgress)
         if (previousEmptyListData == newData) {
             Log_OC.d(TAG, "Skipping setMessageForEmptyList – same data as before")
             return
@@ -595,6 +598,7 @@ open class ExtendedListFragment :
         Handler(Looper.getMainLooper()).post {
             mEmptyListHeadline?.setText(headline)
             mEmptyListMessage?.setText(message)
+            mEmptyListProgress?.visibility = if (showProgress) View.VISIBLE else View.GONE
 
             if (icon != null) {
                 if (tintIcon) {
@@ -696,7 +700,8 @@ open class ExtendedListFragment :
                 setMessageForEmptyList(
                     R.string.file_list_loading,
                     R.string.empty,
-                    null
+                    null,
+                    showProgress = true
                 )
             }
 
@@ -824,7 +829,13 @@ open class ExtendedListFragment :
 
     protected fun isAccountManagerInitialized(): Boolean = ::accountManager.isInitialized
 
-    private data class EmptyListData(val headline: Int, val message: Int, val icon: Int?, val tintIcon: Boolean)
+    private data class EmptyListData(
+        val headline: Int,
+        val message: Int,
+        val icon: Int?,
+        val tintIcon: Boolean,
+        val showProgress: Boolean
+    )
 
     companion object {
         protected val TAG: String = ExtendedListFragment::class.java.getSimpleName()
