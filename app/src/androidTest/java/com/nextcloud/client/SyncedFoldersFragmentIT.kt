@@ -1,44 +1,54 @@
 /*
  * Nextcloud - Android Client
  *
+ * SPDX-FileCopyrightText: 2026 Nextcloud GmbH and Nextcloud contributors
  * SPDX-FileCopyrightText: 2025 Alper Ozturk <alper.ozturk@nextcloud.com>
- * SPDX-FileCopyrightText: 2020 Tobias Kaminsky <tobias@kaminsky.me>
- * SPDX-FileCopyrightText: 2020 Nextcloud GmbH
  * SPDX-License-Identifier: AGPL-3.0-or-later OR GPL-2.0-only
  */
 package com.nextcloud.client
 
-import android.content.Intent
 import android.os.Looper
 import androidx.appcompat.app.AlertDialog
-import androidx.test.core.app.launchActivity
+import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.isRoot
 import com.nextcloud.client.preferences.SubFolderRule
 import com.owncloud.android.AbstractIT
+import com.owncloud.android.R
 import com.owncloud.android.datamodel.MediaFolderType
 import com.owncloud.android.datamodel.SyncedFolder
 import com.owncloud.android.datamodel.SyncedFolderDisplayItem
-import com.owncloud.android.ui.activity.SyncedFoldersActivity
 import com.owncloud.android.ui.dialog.SyncedFolderPreferencesDialogFragment.Companion.newInstance
+import com.owncloud.android.ui.fragment.syncedFolders.SyncedFoldersFragment
+import com.owncloud.android.ui.navigation.NavigatorActivity
+import com.owncloud.android.ui.navigation.NavigatorScreen
 import com.owncloud.android.utils.ScreenshotTest
 import org.junit.Test
 
-class SyncedFoldersActivityIT : AbstractIT() {
-    private val testClassName = "com.nextcloud.client.SyncedFoldersActivityIT"
+class SyncedFoldersFragmentIT : AbstractIT() {
+    private val testClassName = "com.nextcloud.client.SyncedFoldersFragmentIT"
+
+    private fun launchScreen(): ActivityScenario<NavigatorActivity> {
+        val intent = NavigatorActivity.intent(targetContext, NavigatorScreen.SyncedFolders)
+        return ActivityScenario.launch(intent)
+    }
+
+    private fun NavigatorActivity.syncedFoldersFragment(): SyncedFoldersFragment =
+        supportFragmentManager.fragments.filterIsInstance<SyncedFoldersFragment>().first()
 
     @Test
     @ScreenshotTest
     fun open() {
-        launchActivity<SyncedFoldersActivity>().use { scenario ->
+        launchScreen().use { scenario ->
             val screenShotName = createName(testClassName + "_" + "open", "")
             onView(isRoot()).check(matches(isDisplayed()))
 
             scenario.onActivity { sut ->
-                sut.adapter.clear()
-                screenshotViaName(sut.binding.emptyList.emptyListView, screenShotName)
+                val fragment = sut.syncedFoldersFragment()
+                fragment.adapter.clear()
+                screenshotViaName(fragment.requireView().findViewById(R.id.emptyList), screenShotName)
             }
         }
     }
@@ -67,15 +77,14 @@ class SyncedFoldersActivityIT : AbstractIT() {
             SyncedFolder.NOT_SCANNED_YET
         )
 
-        val intent = Intent(targetContext, SyncedFoldersActivity::class.java)
-        launchActivity<SyncedFoldersActivity>(intent).use { scenario ->
+        launchScreen().use { scenario ->
             val screenShotName = createName(testClassName + "_" + "testSyncedFolderDialog", "")
             onView(isRoot()).check(matches(isDisplayed()))
 
             scenario.onActivity { sut ->
-                val fragment = newInstance(item, 0)
-                fragment!!.show(sut.supportFragmentManager, "")
-                screenshot(fragment.requireDialog().window?.decorView, screenShotName)
+                val dialog = newInstance(item, 0)
+                dialog!!.show(sut.syncedFoldersFragment().childFragmentManager, "")
+                screenshot(dialog.requireDialog().window?.decorView, screenShotName)
             }
         }
     }
@@ -87,13 +96,12 @@ class SyncedFoldersActivityIT : AbstractIT() {
             Looper.prepare()
         }
 
-        val intent = Intent(targetContext, SyncedFoldersActivity::class.java)
-
-        launchActivity<SyncedFoldersActivity>(intent).use { scenario ->
+        launchScreen().use { scenario ->
             var dialog: AlertDialog? = null
             scenario.onActivity { sut ->
-                dialog = sut.buildPowerCheckDialog()
-                sut.showPowerCheckDialog()
+                val fragment = sut.syncedFoldersFragment()
+                dialog = fragment.buildPowerCheckDialog()
+                fragment.showPowerCheckDialog()
             }
 
             val screenShotName = createName(testClassName + "_" + "showPowerCheckDialog", "")
