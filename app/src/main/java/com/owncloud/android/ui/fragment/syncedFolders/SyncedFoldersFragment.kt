@@ -436,12 +436,12 @@ class SyncedFoldersFragment :
         }
     }
 
-    override fun onVisibilityToggleClick(section: Int, syncedFolder: SyncedFolderDisplayItem?) {
-        if (syncedFolder == null) return
+    override fun onVisibilityToggleClick(section: Int, item: SyncedFolderDisplayItem?) {
+        if (item == null) return
 
-        syncedFolder.isHidden = !syncedFolder.isHidden
-        saver.saveOrUpdateSyncedFolder(syncedFolder)
-        adapter.setSyncFolderItem(section, syncedFolder)
+        item.isHidden = !item.isHidden
+        saver.saveOrUpdateSyncedFolder(item)
+        adapter.setSyncFolderItem(section, item)
         checkAndShowEmptyListContent()
     }
 
@@ -564,9 +564,10 @@ class SyncedFoldersFragment :
             resultCode == Activity.RESULT_OK &&
             dialogFragment != null
         ) {
-            val chosenFolder: OCFile? = FolderPickerActivity.EXTRA_FOLDER?.let {
-                data?.getParcelableArgument(it, OCFile::class.java)
-            }
+            val chosenFolder: OCFile? = data?.getParcelableArgument(
+                FolderPickerActivity.EXTRA_FOLDER,
+                OCFile::class.java
+            )
             dialogFragment?.setRemoteFolderSummary(chosenFolder?.remotePath)
         } else if (
             requestCode == SyncedFolderPreferencesDialogFragment.REQUEST_CODE__SELECT_LOCAL_FOLDER &&

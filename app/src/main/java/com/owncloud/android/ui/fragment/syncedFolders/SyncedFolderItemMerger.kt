@@ -8,7 +8,6 @@
 package com.owncloud.android.ui.fragment.syncedFolders
 
 import android.content.Context
-import androidx.annotation.VisibleForTesting
 import com.nextcloud.client.core.Clock
 import com.nextcloud.client.jobs.upload.FileUploadWorker
 import com.nextcloud.client.preferences.SubFolderRule
@@ -170,7 +169,6 @@ class SyncedFolderItemMerger(private val context: Context, private val clock: Cl
          * @return sorted list of items
          */
         @JvmStatic
-        @VisibleForTesting
         @Suppress("ComplexMethod")
         fun sortSyncedFolderItems(syncFolderItemList: List<SyncedFolderDisplayItem?>): List<SyncedFolderDisplayItem?> {
             return syncFolderItemList.sortedWith { f1, f2 ->
