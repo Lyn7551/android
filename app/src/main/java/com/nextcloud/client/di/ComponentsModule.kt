@@ -72,7 +72,6 @@ import com.owncloud.android.ui.activity.RichDocumentsEditorWebView
 import com.owncloud.android.ui.activity.SettingsActivity
 import com.owncloud.android.ui.activity.ShareActivity
 import com.owncloud.android.ui.activity.SsoGrantPermissionActivity
-import com.owncloud.android.ui.activity.SyncedFoldersActivity
 import com.owncloud.android.ui.activity.TextEditorWebView
 import com.owncloud.android.ui.activity.ToolbarActivity
 import com.owncloud.android.ui.activity.UploadFilesActivity
@@ -233,9 +232,6 @@ internal interface ComponentsModule {
 
     @ContributesAndroidInjector
     fun ssoGrantPermissionActivity(): SsoGrantPermissionActivity
-
-    @ContributesAndroidInjector
-    fun syncedFoldersActivity(): SyncedFoldersActivity
 
     @ContributesAndroidInjector
     fun trashbinFileActionsBottomSheet(): TrashbinFileActionsBottomSheet
