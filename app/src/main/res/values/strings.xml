@@ -1384,6 +1384,8 @@
     <string name="search_error">Error getting search results</string>
     <string name="load_more_results">Load more results</string>
     <string name="storage_permission_banner_auto_upload_text">Storage permission is required for Auto-upload.</string>
+    <string name="auto_upload_permission_empty_message">Grant storage access to choose which folders are uploaded automatically.</string>
+    <string name="auto_upload_permission_empty_action">Grant permission</string>
     <string name="storage_permission_banner_upload_text">Storage permission is required for file uploads.</string>
     <string name="file_management_permission_optional">Storage permissions</string>
     <string name="file_management_permission_optional_text">%1$s works best with permissions to access storage. You can choose full access to all files, or read-only access to photos and videos.</string>

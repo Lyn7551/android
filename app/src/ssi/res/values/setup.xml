@@ -24,9 +24,10 @@
          escaped, otherwise aapt strips them and the JSON becomes unparseable at runtime. -->
     <string name="enforce_servers" translatable="false">[{\"name\":\"SSI Cloud\",\"url\":\"http://172.19.126.65:30000\"}]</string>
 
-    <!-- Splash screen brand subtitle, rendered as "SSI Cloud" -->
+    <!-- Splash screen brand subtitle, rendered as "SSI Cloud"; the two parts are concatenated
+         without a separator, so the normal part carries its own leading space (quotes preserve it) -->
     <string name="splashScreenBold">SSI</string>
-    <string name="splashScreenNormal">Cloud</string>
+    <string name="splashScreenNormal">" Cloud"</string>
 
     <!-- Colors -->
     <color name="primary">#0F766E</color>

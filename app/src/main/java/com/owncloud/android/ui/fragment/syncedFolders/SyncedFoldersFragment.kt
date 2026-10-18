@@ -182,7 +182,6 @@ class SyncedFoldersFragment :
 
         PermissionUtil.requestStoragePermissionIfNeeded(activity)
         setupContent(binding)
-        binding.emptyList.emptyListViewAction.setOnClickListener { showHiddenItems() }
 
         activity.addMenuProvider(
             SyncedFoldersMenuProvider(::onCreateCustomFolderClick, ::onAllSyncFolderDeleteUploadedClick),
@@ -199,6 +198,8 @@ class SyncedFoldersFragment :
         PermissionUtil.dismissStoragePermissionDialogFragment(requireActivity() as AppCompatActivity)
         if (PermissionUtil.checkStoragePermission(context)) {
             load(merger.itemsDisplayedPerFolder, false)
+        } else {
+            showStoragePermissionEmptyContent()
         }
         binding?.autoUploadBatterySaverWarningCard?.let { uploadWarningCard?.bind(it) }
     }
@@ -215,6 +216,10 @@ class SyncedFoldersFragment :
         val storagePermissionWarningBanner = binding.storagePermissionWarningBanner.root
         StoragePermissionWarningBannerBinding.bind(storagePermissionWarningBanner).apply {
             setup(requireActivity(), R.string.storage_permission_banner_auto_upload_text)
+            viewThemeUtils.material.run {
+                colorMaterialButtonPrimaryBorderless(mediaReadOnly)
+                colorMaterialButtonPrimaryBorderless(allFilesAccess)
+            }
         }
         storagePermissionWarningBanner.setVisibleIf(!PermissionUtil.checkStoragePermission(requireContext()))
     }
@@ -396,7 +401,22 @@ class SyncedFoldersFragment :
         val binding = binding ?: return
         binding.emptyList.emptyListViewAction.text = action
         binding.emptyList.emptyListViewAction.visibility = View.VISIBLE
+        binding.emptyList.emptyListViewAction.setOnClickListener { showHiddenItems() }
         binding.emptyList.emptyListViewText.visibility = View.GONE
+    }
+
+    private fun showStoragePermissionEmptyContent() {
+        val binding = binding ?: return
+        showEmptyContent(
+            getString(R.string.storage_permission_banner_auto_upload_text),
+            getString(R.string.auto_upload_permission_empty_message)
+        )
+        binding.emptyList.emptyListIcon.setImageResource(R.drawable.ic_lock)
+        binding.emptyList.emptyListViewAction.text = getString(R.string.auto_upload_permission_empty_action)
+        binding.emptyList.emptyListViewAction.visibility = View.VISIBLE
+        binding.emptyList.emptyListViewAction.setOnClickListener {
+            PermissionUtil.requestStoragePermissionIfNeeded(requireActivity() as AppCompatActivity)
+        }
     }
 
     private fun showLoadingContent() {
@@ -414,6 +434,7 @@ class SyncedFoldersFragment :
         binding.emptyList.emptyListViewHeadline.text = headline
         binding.emptyList.emptyListViewText.text = message
         binding.emptyList.emptyListViewText.visibility = View.VISIBLE
+        binding.emptyList.emptyListIcon.setImageResource(R.drawable.nav_synced_folders)
         binding.emptyList.emptyListIcon.visibility = View.VISIBLE
     }
 
