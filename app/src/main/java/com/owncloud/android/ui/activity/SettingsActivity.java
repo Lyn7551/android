@@ -393,6 +393,10 @@ public class SettingsActivity extends PreferenceActivity
         setupImprintPreference(preferenceCategoryMore);
 
         loadExternalSettingLinks(preferenceCategoryMore);
+
+        if (preferenceCategoryMore.getPreferenceCount() == 0) {
+            getPreferenceScreen().removePreference(preferenceCategoryMore);
+        }
     }
 
     private void setupImprintPreference(PreferenceCategory preferenceCategoryMore) {
