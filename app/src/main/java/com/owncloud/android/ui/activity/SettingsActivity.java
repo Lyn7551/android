@@ -74,6 +74,8 @@ import com.owncloud.android.providers.DocumentsStorageProvider;
 import com.owncloud.android.ui.ThemeableSwitchPreference;
 import com.owncloud.android.ui.asynctasks.LoadingVersionNumberTask;
 import com.owncloud.android.ui.dialog.setupEncryption.SetupEncryptionDialogFragment;
+import com.owncloud.android.ui.navigation.NavigatorActivity;
+import com.owncloud.android.ui.navigation.NavigatorScreen;
 import com.owncloud.android.ui.helpers.FileOperationsHelper;
 import com.owncloud.android.ui.model.ExtendedSettingsActivityDialog;
 import com.owncloud.android.utils.ClipboardUtil;
@@ -681,8 +683,7 @@ public class SettingsActivity extends PreferenceActivity
             preferenceCategoryMore.removePreference(autoUpload);
         } else {
             autoUpload.setOnPreferenceClickListener(preference -> {
-                Intent intent = new Intent(this, SyncedFoldersActivity.class);
-                startActivity(intent);
+                startActivity(NavigatorActivity.Companion.intent(this, NavigatorScreen.SyncedFolders.INSTANCE));
                 return true;
             });
         }
@@ -896,8 +897,7 @@ public class SettingsActivity extends PreferenceActivity
             if (pSyncedFolder != null) {
                 if (getResources().getBoolean(R.bool.syncedFolder_light)) {
                     pSyncedFolder.setOnPreferenceClickListener(preference -> {
-                        Intent intent = new Intent(this, SyncedFoldersActivity.class);
-                        startActivity(intent);
+                        startActivity(NavigatorActivity.Companion.intent(this, NavigatorScreen.SyncedFolders.INSTANCE));
                         return true;
                     });
                 } else {

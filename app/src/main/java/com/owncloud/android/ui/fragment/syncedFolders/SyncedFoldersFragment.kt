@@ -424,7 +424,8 @@ class SyncedFoldersFragment :
         )
 
         val dialog = dialogFragment ?: return
-        if (dialog.isDialogFragmentReady() && lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)) {
+        val activity = activity as? AppCompatActivity ?: return
+        if (activity.isDialogFragmentReady(dialog) && lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)) {
             val fragmentTransaction = childFragmentManager.beginTransaction().addToBackStack(null)
             dialog.show(fragmentTransaction, SYNCED_FOLDER_PREFERENCES_DIALOG_TAG)
         } else {
@@ -457,7 +458,8 @@ class SyncedFoldersFragment :
             neutralButtonTextId = -1
         )
 
-        if (dialog.isDialogFragmentReady()) {
+        val activity = activity as? AppCompatActivity ?: return
+        if (activity.isDialogFragmentReady(dialog)) {
             dialog.show(childFragmentManager, SUB_FOLDER_WARNING_DIALOG_TAG)
         }
     }
