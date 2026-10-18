@@ -2144,6 +2144,11 @@ public class OCFileListFragment extends ExtendedListFragment implements
         }
 
         activity.runOnUiThread(() -> {
+            // multi-select action mode owns the screen; a background refresh must not resurrect the FAB
+            if (visible && mActiveActionMode != null) {
+                return;
+            }
+
             if (visible) {
                 mFabMain.show();
                 viewThemeUtils.material.themeFAB(mFabMain);
