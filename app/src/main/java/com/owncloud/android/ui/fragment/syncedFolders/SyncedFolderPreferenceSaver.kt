@@ -92,27 +92,26 @@ class SyncedFolderPreferenceSaver(
     /**
      * Builds a display item for a custom folder that is not part of the list yet.
      */
-    fun createCustomFolderItem(syncedFolder: SyncedFolderParcelable): SyncedFolderDisplayItem =
-        SyncedFolderDisplayItem(
-            SyncedFolder.UNPERSISTED_ID,
-            syncedFolder.localPath,
-            syncedFolder.remotePath,
-            syncedFolder.isWifiOnly,
-            syncedFolder.isChargingOnly,
-            syncedFolder.isExisting,
-            syncedFolder.isSubfolderByDate,
-            syncedFolder.account,
-            syncedFolder.uploadAction,
-            syncedFolder.nameCollisionPolicy.serialize(),
-            syncedFolder.isEnabled,
-            clock.currentTime,
-            File(syncedFolder.localPath).name,
-            syncedFolder.type,
-            syncedFolder.isHidden,
-            syncedFolder.subFolderRule,
-            syncedFolder.isExcludeHidden,
-            SyncedFolder.NOT_SCANNED_YET
-        )
+    fun createCustomFolderItem(syncedFolder: SyncedFolderParcelable): SyncedFolderDisplayItem = SyncedFolderDisplayItem(
+        SyncedFolder.UNPERSISTED_ID,
+        syncedFolder.localPath,
+        syncedFolder.remotePath,
+        syncedFolder.isWifiOnly,
+        syncedFolder.isChargingOnly,
+        syncedFolder.isExisting,
+        syncedFolder.isSubfolderByDate,
+        syncedFolder.account,
+        syncedFolder.uploadAction,
+        syncedFolder.nameCollisionPolicy.serialize(),
+        syncedFolder.isEnabled,
+        clock.currentTime,
+        File(syncedFolder.localPath).name,
+        syncedFolder.type,
+        syncedFolder.isHidden,
+        syncedFolder.subFolderRule,
+        syncedFolder.isExcludeHidden,
+        SyncedFolder.NOT_SCANNED_YET
+    )
 
     companion object {
         // yes, there is a typo in this value

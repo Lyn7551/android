@@ -125,9 +125,6 @@ class SyncedFoldersFragment :
         super.onCreate(savedInstanceState)
 
         val activity = activity ?: return
-        if (themeUtils.themingEnabled(activity)) {
-            activity.theme.applyStyle(R.style.FallbackThemingTheme, true)
-        }
 
         merger = SyncedFolderItemMerger(activity, clock)
         saver = SyncedFolderPreferenceSaver(syncedFolderProvider, backgroundJobManager, clock)
@@ -156,6 +153,12 @@ class SyncedFoldersFragment :
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        // applying the fallback theme here (not in onCreate) keeps it after the host's
+        // setSupportActionBar; on recreation fragment onCreate runs inside it and would crash
+        if (themeUtils.themingEnabled(context)) {
+            requireContext().theme.applyStyle(R.style.FallbackThemingTheme, true)
+        }
+
         val binding = SyncedFoldersFragmentBinding.inflate(inflater, container, false)
         this.binding = binding
         return binding.root
@@ -591,12 +594,11 @@ class SyncedFoldersFragment :
             return
         }
 
-        if (!lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)) {
+        if (lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)) {
+            dialogs.showBatteryOptimizationDialog(activity)
+        } else {
             Log_OC.w(TAG, "Fragment not resumed, skipping battery dialog")
-            return
         }
-
-        dialogs.showBatteryOptimizationDialog(activity)
     }
 
     companion object {

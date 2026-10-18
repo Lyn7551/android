@@ -25,10 +25,7 @@ import java.util.Locale
 /**
  * Merges synced folder configurations with device media folders into display items.
  */
-class SyncedFolderItemMerger(
-    private val context: Context,
-    private val clock: Clock
-) {
+class SyncedFolderItemMerger(private val context: Context, private val clock: Clock) {
 
     val itemsDisplayedPerFolder: Int
         get() = context.resources.getInteger(R.integer.media_grid_width) * 2
@@ -122,29 +119,28 @@ class SyncedFolderItemMerger(
     private fun createSyncedFolderFromMediaFolder(
         accountName: String,
         mediaFolder: MediaFolder
-    ): SyncedFolderDisplayItem =
-        SyncedFolderDisplayItem(
-            SyncedFolder.UNPERSISTED_ID,
-            mediaFolder.absolutePath,
-            context.getString(R.string.instant_upload_path) + "/" + mediaFolder.folderName,
-            true,
-            false,
-            true,
-            false,
-            accountName,
-            FileUploadWorker.LOCAL_BEHAVIOUR_FORGET,
-            NameCollisionPolicy.ASK_USER.serialize(),
-            false,
-            clock.currentTime,
-            mediaFolder.filePaths,
-            mediaFolder.folderName,
-            mediaFolder.numberOfFiles,
-            mediaFolder.type,
-            false,
-            SubFolderRule.YEAR_MONTH,
-            false,
-            SyncedFolder.NOT_SCANNED_YET
-        )
+    ): SyncedFolderDisplayItem = SyncedFolderDisplayItem(
+        SyncedFolder.UNPERSISTED_ID,
+        mediaFolder.absolutePath,
+        context.getString(R.string.instant_upload_path) + "/" + mediaFolder.folderName,
+        true,
+        false,
+        true,
+        false,
+        accountName,
+        FileUploadWorker.LOCAL_BEHAVIOUR_FORGET,
+        NameCollisionPolicy.ASK_USER.serialize(),
+        false,
+        clock.currentTime,
+        mediaFolder.filePaths,
+        mediaFolder.folderName,
+        mediaFolder.numberOfFiles,
+        mediaFolder.type,
+        false,
+        SubFolderRule.YEAR_MONTH,
+        false,
+        SyncedFolder.NOT_SCANNED_YET
+    )
 
     private fun getDisplayFilePathList(files: List<File>?): List<String>? {
         if (!files.isNullOrEmpty()) {
