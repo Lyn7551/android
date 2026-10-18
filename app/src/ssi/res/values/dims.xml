@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Nextcloud - Android Client
+  ~
+  ~ SPDX-FileCopyrightText: 2026 Nextcloud GmbH and Nextcloud contributors
+  ~ SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+<!-- SSI Cloud branded overlay: unify list-row badge sizes (synced badge matched to favorite badge) -->
+<resources>
+    <dimen name="list_item_local_file_indicator_layout_width">14dp</dimen>
+    <dimen name="list_item_local_file_indicator_layout_height">14dp</dimen>
+</resources>
