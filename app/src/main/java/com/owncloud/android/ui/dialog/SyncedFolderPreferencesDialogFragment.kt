@@ -66,12 +66,16 @@ class SyncedFolderPreferencesDialogFragment :
     private var binding: SyncedFoldersSettingsLayoutBinding? = null
     private var isNeutralButtonActive = true
 
+    private val preferenceListener: OnSyncedFolderPreferenceListener?
+        get() = parentFragment as? OnSyncedFolderPreferenceListener
+            ?: activity as? OnSyncedFolderPreferenceListener
+
     @Deprecated("Deprecated in Java")
     override fun onAttach(activity: Activity) {
         super.onAttach(activity)
-        require(activity is OnSyncedFolderPreferenceListener) {
+        require(preferenceListener != null) {
             (
-                "The host activity must implement " +
+                "The parent fragment or host activity must implement " +
                     OnSyncedFolderPreferenceListener::class.java.canonicalName
                 )
         }
@@ -404,17 +408,28 @@ class SyncedFolderPreferencesDialogFragment :
             val action = Intent(activity, FolderPickerActivity::class.java).apply {
                 putExtra(FolderPickerActivity.EXTRA_ACTION, FolderPickerActivity.CHOOSE_LOCATION)
             }
-            requireActivity().startActivityForResult(action, REQUEST_CODE__SELECT_REMOTE_FOLDER)
+            startPickerForResult(action, REQUEST_CODE__SELECT_REMOTE_FOLDER)
         }
         binding.localFolderContainer.setOnClickListener {
             val action = Intent(activity, UploadFilesActivity::class.java)
             action.putExtra(UploadFilesActivity.KEY_LOCAL_FOLDER_PICKER_MODE, true)
             action.putExtra(UploadFilesActivity.REQUEST_CODE_KEY, REQUEST_CODE__SELECT_LOCAL_FOLDER)
-            requireActivity().startActivityForResult(action, REQUEST_CODE__SELECT_LOCAL_FOLDER)
+            startPickerForResult(action, REQUEST_CODE__SELECT_LOCAL_FOLDER)
         }
 
         binding.settingInstantBehaviourContainer.setOnClickListener { showBehaviourDialog() }
         binding.settingInstantNameCollisionPolicyContainer.setOnClickListener { showNameCollisionPolicyDialog() }
+    }
+
+    @Suppress("DEPRECATION")
+    private fun startPickerForResult(intent: Intent, requestCode: Int) {
+        // routing through the parent fragment keeps the result inside the navigator-hosted screen
+        val parent = parentFragment
+        if (parent != null) {
+            parent.startActivityForResult(intent, requestCode)
+        } else {
+            requireActivity().startActivityForResult(intent, requestCode)
+        }
     }
 
     private fun showBehaviourDialog() {
@@ -500,21 +515,21 @@ class SyncedFolderPreferencesDialogFragment :
     private inner class OnSyncedFolderSaveClickListener : View.OnClickListener {
         override fun onClick(v: View) {
             dismiss()
-            (activity as OnSyncedFolderPreferenceListener?)?.onSaveSyncedFolderPreference(syncedFolder)
+            preferenceListener?.onSaveSyncedFolderPreference(syncedFolder)
         }
     }
 
     private inner class OnSyncedFolderCancelClickListener : View.OnClickListener {
         override fun onClick(v: View) {
             dismiss()
-            (activity as OnSyncedFolderPreferenceListener?)?.onCancelSyncedFolderPreference()
+            preferenceListener?.onCancelSyncedFolderPreference()
         }
     }
 
     private inner class OnSyncedFolderDeleteClickListener : View.OnClickListener {
         override fun onClick(v: View) {
             dismiss()
-            (activity as OnSyncedFolderPreferenceListener?)?.onDeleteSyncedFolderPreference(syncedFolder)
+            preferenceListener?.onDeleteSyncedFolderPreference(syncedFolder)
         }
     }
 

@@ -125,6 +125,7 @@ import com.owncloud.android.ui.fragment.contactsbackup.BackupFragment
 import com.owncloud.android.ui.fragment.contactsbackup.BackupListFragment
 import com.owncloud.android.ui.fragment.localfilelist.LocalFileListFragment
 import com.owncloud.android.ui.fragment.notifications.NotificationsFragment
+import com.owncloud.android.ui.fragment.syncedFolders.SyncedFoldersFragment
 import com.owncloud.android.ui.fragment.uploadList.UploadListFragment
 import com.owncloud.android.ui.navigation.NavigatorActivity
 import com.owncloud.android.ui.preview.FileDownloadFragment
@@ -151,6 +152,9 @@ internal interface ComponentsModule {
 
     @ContributesAndroidInjector
     fun uploadListFragment(): UploadListFragment
+
+    @ContributesAndroidInjector
+    fun syncedFoldersFragment(): SyncedFoldersFragment
 
     @ContributesAndroidInjector
     fun activitiesFragment(): ActivitiesFragment

@@ -13,6 +13,7 @@ import com.owncloud.android.R
 import com.owncloud.android.ui.fragment.ActivitiesFragment
 import com.owncloud.android.ui.fragment.community.CommunityFragment
 import com.owncloud.android.ui.fragment.notifications.NotificationsFragment
+import com.owncloud.android.ui.fragment.syncedFolders.SyncedFoldersFragment
 import com.owncloud.android.ui.fragment.uploadList.UploadListFragment
 import com.owncloud.android.ui.navigation.model.ActionBarStyle
 import com.owncloud.android.ui.trashbin.TrashbinFragment
@@ -30,6 +31,9 @@ sealed class NavigatorScreen(val tag: String, val hasDrawer: Boolean = true) : P
     object Notifications : NavigatorScreen(NOTIFICATIONS_TAG, hasDrawer = false)
 
     @Parcelize
+    object SyncedFolders : NavigatorScreen(SYNCED_FOLDERS_TAG, hasDrawer = false)
+
+    @Parcelize
     object Trashbin : NavigatorScreen(TRASHBIN_TAG)
 
     @Parcelize
@@ -40,12 +44,14 @@ sealed class NavigatorScreen(val tag: String, val hasDrawer: Boolean = true) : P
         private const val ACTIVITIES_TAG = "Activities"
         private const val COMMUNITY_TAG = "Community"
         private const val NOTIFICATIONS_TAG = "Notifications"
+        private const val SYNCED_FOLDERS_TAG = "SyncedFolders"
         private const val UPLOAD_LIST_TAG = "UploadList"
 
         fun fromTag(tag: String?): NavigatorScreen? = when (tag) {
             ACTIVITIES_TAG -> Activities
             COMMUNITY_TAG -> Community
             NOTIFICATIONS_TAG -> Notifications
+            SYNCED_FOLDERS_TAG -> SyncedFolders
             TRASHBIN_TAG -> Trashbin
             UPLOAD_LIST_TAG -> UploadList
             else -> null
@@ -57,6 +63,7 @@ sealed class NavigatorScreen(val tag: String, val hasDrawer: Boolean = true) : P
         Activities -> R.id.nav_activity
         Trashbin -> R.id.nav_trashbin
         UploadList -> R.id.nav_uploads
+        SyncedFolders -> R.id.nav_settings
         Notifications -> -1
     }
 
@@ -65,6 +72,7 @@ sealed class NavigatorScreen(val tag: String, val hasDrawer: Boolean = true) : P
         Activities -> ActionBarStyle.Plain to R.string.drawer_item_activities
         Trashbin -> ActionBarStyle.Plain to R.string.drawer_item_trashbin
         UploadList -> ActionBarStyle.Plain to R.string.uploads_view_title
+        SyncedFolders -> ActionBarStyle.Plain to R.string.drawer_synced_folders
         Notifications -> ActionBarStyle.Plain to R.string.drawer_item_notifications
     }
 
@@ -74,5 +82,6 @@ sealed class NavigatorScreen(val tag: String, val hasDrawer: Boolean = true) : P
         Notifications -> NotificationsFragment()
         Trashbin -> TrashbinFragment()
         UploadList -> UploadListFragment()
+        SyncedFolders -> SyncedFoldersFragment()
     }
 }
