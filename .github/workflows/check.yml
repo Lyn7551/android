@@ -7,7 +7,7 @@ on:
     pull_request:
         branches: [ master, stable-* ]
     push:
-        branches: [ master ]
+        branches: [ master, ssi-brand ]
 
 # Declare default permissions as read only.
 permissions: read-all

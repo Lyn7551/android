@@ -5,6 +5,9 @@
 name: "Detect wrong settings"
 
 on:
+  push:
+    branches:
+      - ssi-brand
     pull_request:
         branches: [ master, stable-* ]
 

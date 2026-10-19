@@ -4,6 +4,9 @@
 name: "Garm"
 
 on:
+  push:
+    branches:
+      - ssi-brand
     pull_request:
         branches: [ master, stable-* ]
 

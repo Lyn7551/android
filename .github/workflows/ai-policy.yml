@@ -9,6 +9,9 @@
 name: AI Policy
 
 on:
+  push:
+    branches:
+      - ssi-brand
   pull_request:
     types: [opened, synchronize, reopened]
     branches: [master, main]
